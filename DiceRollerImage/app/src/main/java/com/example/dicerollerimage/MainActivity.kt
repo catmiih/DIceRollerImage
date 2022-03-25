@@ -35,13 +35,17 @@ class MainActivity : AppCompatActivity() {
             else -> R.drawable.dice_6
         }
 
-        diceImage.setImageResource(drawableResource)
+            if(number.length() != 0) {
+                if (randomInt == Integer.parseInt(number.text.toString())) {
+                    Toast.makeText(this, "You win!!!!!!", Toast.LENGTH_SHORT).show()
+                }else {
+                    Toast.makeText(this, "You Lose :(", Toast.LENGTH_SHORT).show()
+                }
+            }else {
+                Toast.makeText(this, "Preencha o campo.", Toast.LENGTH_SHORT).show()
+            }
 
-        if (randomInt == Integer.parseInt(number.text.toString())) {
-            Toast.makeText(this, "You win!!!!!!", Toast.LENGTH_SHORT).show()
-        }else {
-            Toast.makeText(this, "You Lose :(", Toast.LENGTH_SHORT).show()
+            diceImage.setImageResource(drawableResource)
         }
-    }
     }
 }
