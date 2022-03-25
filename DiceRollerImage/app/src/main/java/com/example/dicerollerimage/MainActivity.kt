@@ -2,9 +2,9 @@ package com.example.dicerollerimage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.webkit.ConsoleMessage
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,9 +16,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rollDice(){
-        val randomInt = (1..6).random()
+
 
         val diceImage: ImageView = findViewById(R.id.dice_image)
+        val number: TextView = findViewById(R.id.number)
+
+        if (number.text.toString() == null || Integer.parseInt(number.text.toString()) > 6) {
+            Toast.makeText(this, "Escolha um número entre 1 e 6", Toast.LENGTH_SHORT).show()
+        }else {
+        val randomInt = (1..6).random()
 
         val drawableResource = when(randomInt) {
             1 -> R.drawable.dice_1
@@ -30,5 +36,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         diceImage.setImageResource(drawableResource)
+
+        if (randomInt == Integer.parseInt(number.text.toString())) {
+            Toast.makeText(this, "You win!!!!!!", Toast.LENGTH_SHORT).show()
+        }else {
+            Toast.makeText(this, "You Lose :(", Toast.LENGTH_SHORT).show()
+        }
+    }
     }
 }
